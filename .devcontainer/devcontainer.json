@@ -3,9 +3,7 @@
   "codespaces": {
     "repositories": {
       "mwennersUSDS/*": {
-        "permissions": {
-		   "write-all"
-        }
+        "permissions": "write-all"
       }
     }
   }
