@@ -4,7 +4,6 @@
     "repositories": {
       "mwennersUSDS/*": {
         "permissions": {
-           "read-all",
 		   "write-all"
         }
       }
