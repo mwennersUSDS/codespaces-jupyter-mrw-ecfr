@@ -2,37 +2,31 @@ Initial repo for codespace trial run on eCFR
 
 <h2>eCFR methods</h2>
 
-<h3>eCFR_API_Wrapper:<h3>
+<h3>eCFR_API_Wrapper:</h3>
 Wrapper utility class with two methods:
-
  <li>fetch_data - synchronous call to a JSON REST API endpoint</li>
- 
  <li>fetch_data_asynch - same but asynch</li> 
 
 
-eCFR_HouseKeeping:
-  fetch_titles_data - helper method to return titles.json from API and populate self.titles.json (fast)
+<h3>eCFR_HouseKeeping:</h3>
+Helper class to interact with the API endpoints in a structured way
+Writes titles, agencies, and full text of title data to disk as JSON and XML
+9 methods, in 3 groups: fetch (calls the API), load (reads from file, if file not exists, calls fetch), refresh (check if file exists and is <30 days old, in which case load, else fetch)
 
-  fetch_agencies_data - helper method to return agencies.json from API and populate self.agencies.json (reasonably fast)
+<i>FETCH - call the API</i>
+  <li>fetch_agencies_data - helper method to return agencies.json from API and populate self.agencies.json (reasonably fast) </li> 
+  <li>fetch_titles_data - helper method to return titles.json from API and populate self.titles.json (fast) </li>
+  <li>fetch_full_text_by_title_and_chapter - helper method to return full text of a title and chapter from API (slow - use asynch) </li>
+
+<i>LOAD - load from file. If file not found, fetch</i>
+  <li>load_agency_data - try to load agencies.json from local file else refresh</li> 
+  <li>load_title_data - try to load titles.json from local file else refresh</li>  
+  <li>load_full_text_by_title_and_chapter - try to load a single title and chapter versions json from file</li> 
+
+<i>REFRESH - check age. if not found or <30 days, fetch, else, load</i>  
+  <li>refresh_agencies - fetch agencies.json and write the file</li> 
+  <li>refresh_titles - check to see if titles.json exists and is <30 days stale. fetch and write otherwise</li>
+  <li>refresh_full_text_by_title_and_chapter - fetch a single title and chapter versions json from the API and write the file</li> 
   
-  refresh_agencies - fetch agencies.json and write the file 
+
   
-  refresh_titles - check to see if titles.json exists and is <30 days stale. fetch and write otherwise
-  
-  refresh_title_and_chapter_versions - fetch a single title and chapter versions json from the API and write the file 
-  
-  load_agency_data - try to load agencies.json from local file else refresh 
-  
-  load_title_data - try to load titles.json from local file else refresh 
-  
-  load_title_and_chapter_versions - try to load a single title and chapter versions json from file 
-  
-  refresh_all_versions_byslug - call refresh_title_and_chapter_versions for all agency slugs
-  
- -----https://skylight.digital/careers/career-pathways/digital-transformer/#principal-digital-transformer 
-  
-  fetch_full_text_byslug - helper method to return full text of a title and chapter from API
-  
-  refresh_full_text_byslug - check to see if full text exists, if not fetch full text and write the file 
-  
-  load_full_text_byslug - try to load full text of a title and chapter else refresh 
