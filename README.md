@@ -24,7 +24,7 @@ Writes titles, agencies, and full text of title data to disk as JSON and XML
   <li>load_full_text_by_title_and_chapter - try to load a single title and chapter versions json from file</li> 
 
 <h4>REFRESH - check age. if not found or <30 days, fetch, else, load</h4>  
-  <li>refresh_agencies - fetch agencies.json and write the file</li> 
+  <li>refresh_agencies - try to load and confirm < 30 days fetch agencies.json and write the file</li> 
   <li>refresh_titles - check to see if titles.json exists and is <30 days stale. fetch and write otherwise</li>
   <li>refresh_full_text_by_title_and_chapter - fetch a single title and chapter versions json from the API and write the file</li> 
   <li>refresh_full_text_all - fetch all titles from the API and write the files</li> 
